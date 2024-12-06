@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <body>
+        <form method="post" action="/update">
+            <input type="hidden"
+                   name="id"
+                   th:value="${cat.id}"/>
+            <lable><i>Cat Name</i></lable>
+            <br>
+            <input type="text"
+                   name="name"
+                   placeholder="Cat Name"
+                   th:value="${cat.name}"/>
+            <br>
+            <br>
+            <lable><i>Breed</i></lable>
+            <br>
+            <input type="text"
+                   name="breed"
+                   placeholder="Breed"
+                   th:value="${cat.breed}"/><br>
+            <br>
+            <lable><i>Age</i></lable>
+            <br>
+            <input type="text"
+                   name="age"
+                   placeholder="Age"
+                   th:value="${cat.age}"/><br>
+            <input type="submit"
+                   value="EDIT">
+        </form>
+    </body>
+</html>

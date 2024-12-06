@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat Form</title>
+</head>
+<body>
+<h2 th:text="${cat.id} == null ? 'Create Cat' : 'Edit Cat'">Cat Form</h2>
+
+<form th:action="@{${cat.id} == null ? '/create' : '/update'}" th:object="${cat}" method="post">
+    <!-- Поле для ввода имени кота -->
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red">Name Error</p>
+    </div>
+
+    <!-- Поле для ввода породы кота -->
+    <div>
+        <label for="breed">Breed:</label>
+        <input type="text" id="breed" th:field="*{breed}" required />
+        <p th:if="${#fields.hasErrors('breed')}" th:errors="*{breed}" style="color:red">Breed Error</p>
+    </div>
+
+    <!-- Поле для ввода возраста кота -->
+    <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" th:field="*{age}" min="0" required />
+        <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" style="color:red">Age Error</p>
+    </div>
+
+    <!-- Скрытое поле для ID при редактировании -->
+    <input type="hidden" th:if="${cat.id} != null" th:field="*{id}" />
+
+    <!-- Кнопка отправки формы -->
+    <button type="submit" th:text="${cat.id} == null ? 'Create' : 'Update'">Submit</button>
+</form>
+
+<!-- Ссылка для возврата на главную страницу -->
+<a href="/">Back to List</a>
+</body>
+</html>
