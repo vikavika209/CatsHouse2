@@ -1,28 +1,45 @@
 <configuration>
-    <appender name="info.log" class="ch.qos.logback.core.FileAppender">
+
+    <appender name="INFO_FILE" class="ch.qos.logback.core.FileAppender">
         <file>logs/info.log</file>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
     </appender>
 
-    <appender name="debug.log" class="ch.qos.logback.core.FileAppender">
+    <appender name="DEBUG_FILE" class="ch.qos.logback.core.FileAppender">
         <file>logs/debug.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="org.example.Info" level="info" additivity="false">
-        <appender-ref ref="info.log" />
+    <logger name="org.example" level="debug" additivity="false">
+        <appender-ref ref="DEBUG_FILE" />
     </logger>
 
-    <logger name="org.example.Debug" level="debug" additivity="false">
-        <appender-ref ref="debug.log" />
+    <logger name="org.example" level="info" additivity="false">
+        <appender-ref ref="INFO_FILE" />
     </logger>
 
     <root level="info">
-        <appender-ref ref="info.log" />
+        <appender-ref ref="CONSOLE" />
     </root>
 
 </configuration>

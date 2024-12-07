@@ -1,9 +1,7 @@
 package org.example.controllers;
-import jakarta.validation.UnexpectedTypeException;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
-
-
-
 
 @Controller
 @Validated
@@ -76,7 +71,7 @@ public class CatsController {
         catToUpdate.setName(cat.getName());
         catToUpdate.setBreed(cat.getBreed());
         catToUpdate.setAge(cat.getAge());
-        LOGGER.info("Updated cat with ID: {}, New Name: {}", catToUpdate.getId(), catToUpdate.getName());
+        LOGGER.info("Updated cat with ID: {}", catToUpdate.getId());
         return "redirect:/";
     }
 }
